@@ -1,0 +1,9 @@
+<div>
+  <div><label>{{details}}</label></div>
+  <div><label>Messages</label></div>
+  <div><textarea rows="5" cols="30" [disabled]="sending"></textarea></div>
+  <div>
+    <button (click)="send()" class="btn btn-success">send</button>
+    <button (click)="cancel()" class="btn btn-danger">cancel</button>
+  </div>
+</div>

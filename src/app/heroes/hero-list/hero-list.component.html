@@ -1,0 +1,11 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Hero list</div>
+  <div class="panel-body">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of items|async;" [routerLink]="['/hero',item.id]" [class.active]="item.id===activeId">
+        <span class="badge">{{item.id}}</span>
+        {{item.name}}      
+      </li>
+    </ul>
+  </div>
+</div>

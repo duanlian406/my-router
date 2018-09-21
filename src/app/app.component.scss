@@ -1,0 +1,16 @@
+.panel {
+    width:70%;
+    margin:10px auto;
+}
+.active {
+    color:red;
+    animation: 1s alternate  bounce 4;
+}
+@keyframes bounce {
+    from {
+        transform:scale(0.9);
+    }
+    to {
+        transform:scale(1.1);
+    }
+}
