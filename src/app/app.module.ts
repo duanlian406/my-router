@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRouteModule } from './app-route/app-route.module';
 import { HeroesModule } from './heroes/heroes.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +18,8 @@ import { Router } from '@angular/router';
   imports: [
     BrowserModule,
     HeroesModule,
-    AppRouteModule
+    AppRouteModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

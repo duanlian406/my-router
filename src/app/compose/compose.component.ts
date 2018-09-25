@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   templateUrl: './compose.component.html',
@@ -11,16 +12,16 @@ export class ComposeComponent {
   message: string;
   sending = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private service: HttpClient) { }
 
   send() {
     this.sending = true;
     this.details = 'Sending Message...';
-
+    this.service.get('api/getData').subscribe(console.log);
     setTimeout(() => {
       this.sending = false;
       this.closePopup();
-    }, 1000);
+    }, 2000);
   }
 
   cancel() {
