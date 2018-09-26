@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HeroesService } from '../heroes.service';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'hero-detail',
@@ -11,19 +10,24 @@ import { switchMap } from 'rxjs/operators';
 export class HeroDetailComponent implements OnInit {
   item;
   value = '';
-  constructor(private route: ActivatedRoute, private service: HeroesService) { }
+  constructor(private route: ActivatedRoute, private http: HeroesService) { }
 
   ngOnInit() {
-    this.route.paramMap.pipe(switchMap(params => this.service.getDetail(params.get('id')))).subscribe(item => {
-      this.item = item;
-      this.value = item.name;
+    this.route.data.subscribe(data => {
+      this.item = data.hero;
+      this.value = data.hero.name;
     });
   }
   save() {
-    this.item.name = this.value;
-  }
-  cancel() {
-    this.value = this.item.name;
+    if (this.value.trim() && this.value.trim() !== this.item.name) {
+      this.http.updateList({ type: 'update', data: { id: this.item.id, name: this.value } }).subscribe(res => {
+        if (!res.state) {
+          this.item.name = this.value;
+        } else {
+          alert(res.msg);
+        }
+      });
+    }
   }
   canDeactivate() {
     if (this.value !== this.item.name) {

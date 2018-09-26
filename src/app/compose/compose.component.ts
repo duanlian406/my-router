@@ -17,7 +17,6 @@ export class ComposeComponent {
   send() {
     this.sending = true;
     this.details = 'Sending Message...';
-    this.service.get('api/getData').subscribe(console.log);
     setTimeout(() => {
       this.sending = false;
       this.closePopup();

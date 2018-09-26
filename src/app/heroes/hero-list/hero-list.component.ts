@@ -16,5 +16,4 @@ export class HeroListComponent implements OnInit {
     this.items = this.service.getList();
     this.route.paramMap.subscribe(params => this.activeId = +params.get('id'));
   }
-
 }

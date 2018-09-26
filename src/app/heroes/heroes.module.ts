@@ -5,6 +5,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { HeroesService } from './heroes.service';
 import { FormsModule } from '@angular/forms';
+import { HeroDetailResolverService } from './hero-detail-resolver.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   declarations: [HeroDetailComponent, HeroListComponent],
-  providers: [HeroesService],
+  providers: [HeroesService, HeroDetailResolverService],
 })
 export class HeroesModule { }

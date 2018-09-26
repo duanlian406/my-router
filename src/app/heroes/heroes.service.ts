@@ -1,32 +1,22 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
-
-class Hero {
-  id: number;
-  name: string;
-}
-
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
 
 @Injectable()
 export class HeroesService {
+  Heroes$: BehaviorSubject<any> = new BehaviorSubject([]);
+  HEROES: any = [];
   getList() {
-    return of(HEROES).pipe(delay(500));
+    return this.Heroes$;
   }
   getDetail(id) {
-    return of(id).pipe(map(v => HEROES.find(item => item.id === +v)));
+    return of(this.HEROES.find(item => item.id === +id));
   }
-  constructor() { }
+  updateList(option) {
+    return this.http.post('api/updateList', option);
+  }
+  constructor(private http: HttpClient) {
+    this.http.get('api/getHeroList').subscribe(data => this.Heroes$.next(this.HEROES = data));
+  }
 }
