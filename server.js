@@ -57,7 +57,6 @@ app.post("/updateList", (req, res) => {
             }
             break;
         default:
-            console.log(111);
             break;
     }
 
